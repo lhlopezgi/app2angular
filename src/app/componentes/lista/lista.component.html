@@ -1,0 +1,24 @@
+
+
+<div *ngIf="pokemonesCompleto.length > 0">
+  <div class="pokemon-container">
+    <mat-card class="example-card" *ngFor="let item of pokemonesCompleto; trackBy: trackById">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <img [src]="item.sprites?.front_default" alt="{{ item.name }}">
+        </div>
+        <mat-card-title>{{ item.name | uppercase }}</mat-card-title>
+        <mat-card-subtitle>Tipo: {{ item.types[0]?.type.name }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p><strong>Altura:</strong> {{ item.height / 10 }} m</p>
+        <p><strong>Peso:</strong> {{ item.weight / 10 }} kg</p>
+        <p><strong>Tipo(s):</strong> {{ getPokemonTypes(item.types) }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="playSound(item.cries?.latest)">Sonido</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+
